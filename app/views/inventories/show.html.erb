@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Equipment type:</b>
+  <%= @inventory.equipment_type %>
+</p>
+
+<p>
+  <b>Equipment name:</b>
+  <%= @inventory.equipment_name %>
+</p>
+
+<p>
+  <b>Num of items:</b>
+  <%= @inventory.num_of_items %>
+</p>
+
+<p>
+  <b>Rental price:</b>
+  <%= @inventory.rental_price %>
+</p>
+
+
+<%= link_to 'Edit', edit_inventory_path(@inventory) %> |
+<%= link_to 'Back', inventories_path %>

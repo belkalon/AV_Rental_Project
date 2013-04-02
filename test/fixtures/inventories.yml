@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  equipment_type: MyString
+  equipment_name: MyString
+  num_of_items: 1
+  rental_price: 1.5
+
+two:
+  equipment_type: MyString
+  equipment_name: MyString
+  num_of_items: 1
+  rental_price: 1.5
