@@ -1,4 +1,7 @@
 AVRentalProject::Application.routes.draw do
+  resources :rentals
+
+
   resources :customers
 
 

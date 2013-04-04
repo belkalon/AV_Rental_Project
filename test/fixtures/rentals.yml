@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer: 
+  inventory: 
+  quantity: 1
+  return_date: 2013-04-03
+  event_name: MyString
+
+two:
+  customer: 
+  inventory: 
+  quantity: 1
+  return_date: 2013-04-03
+  event_name: MyString

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Customer:</b>
+  <%= @rental.customer %>
+</p>
+
+<p>
+  <b>Inventory:</b>
+  <%= @rental.inventory %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @rental.quantity %>
+</p>
+
+<p>
+  <b>Return date:</b>
+  <%= @rental.return_date %>
+</p>
+
+<p>
+  <b>Event name:</b>
+  <%= @rental.event_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_rental_path(@rental) %> |
+<%= link_to 'Back', rentals_path %>
