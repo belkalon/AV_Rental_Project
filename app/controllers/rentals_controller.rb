@@ -1,4 +1,9 @@
 class RentalsController < ApplicationController
+	#from http://stackoverflow.com/questions/13605598/how-to-get-a-date-from-date-select-or-select-date-in-rails 
+	def flatten_date_array hash
+	  %w(1 2 3).map { |e| hash["return_date(#{e}i)"].to_i }
+	end
+
   # GET /rentals
   # GET /rentals.json
   def index
@@ -40,7 +45,21 @@ class RentalsController < ApplicationController
   # POST /rentals
   # POST /rentals.json
   def create
-    @rental = Rental.new(params[:rental])
+		#causes problems due to customer and inventory being protected.
+		#try doing this without mass-assignment
+    #@rental = Rental.new(params[:rental])
+		@rental = Rental.new
+		
+		rent = params[:rental]
+		@rental.return_date = Date.today + 14.days #default rental time of 2 weeks
+		@rental.event_name = rent[:event_name]
+		@rental.quantity = rent[:quantity]
+
+		#hack to save rentals until we can dynamically find/select customers/items
+		@cust = Customer.find(1)
+		@item = Inventory.find(1)
+		@rental.customer = @cust
+		@rental.inventory = @item
 
     respond_to do |format|
       if @rental.save
