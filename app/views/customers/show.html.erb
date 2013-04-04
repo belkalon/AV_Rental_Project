@@ -20,6 +20,22 @@
   <%= @customer.phone %>
 </p>
 
+<!-- want to show rentals here, if any -->
+<p>
+<% if @customer.rental.empty? %> <b>No Rentals</b>
+<% else %>
+	<%if @customer.rental.count == 1 %>
+	<b>Rental:</b><br/>
+	<% rent = @customer.rental %>
+	<%= link_to rent.first.event_name + ": "+rent.first.inventory.equipment_name, rent %><br />
+	<% else %>
+	<b><%=@customer.rental.count%> Rentals:</b><br/>
+		<% @customer.rental.each do |rent| %>
+		<%= link_to rent.event_name+": "+rent.inventory.equipment_name, rent %><br />
+		<%end%>
+	<% end %>
+<%end%>
+</p>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
