@@ -11,6 +11,7 @@
     <th></th>
   </tr>
 
+<%if params[:customer_id] %>
 <% @inventories.each do |inventory| %>
   <tr>
     <td><%= inventory.equipment_type %></td>
@@ -20,8 +21,26 @@
     <td><%= link_to 'Show', inventory %></td>
     <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
     <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= link_to 'Complete Rental', :controller => "rentals", :customer_id => params[:customer_id], :action => "new", :inventory_id => inventory.id %></td>
   </tr>
 <% end %>
+
+<%else%>
+
+<% @inventories.each do |inventory| %>
+  <tr>
+    <td><%= inventory.equipment_type %></td>
+    <td><%= inventory.equipment_name %></td>
+    <td><%= inventory.num_of_items %></td>
+    <td><%= inventory.rental_price %></td>
+    <td><%= link_to 'Show', inventory %></td>
+    <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
+    <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= link_to 'New Rental', :controller => "customers", :inventory_id => inventory.id%></td>
+  </tr>
+<% end %>
+<%end%>
+
 </table>
 
 <br />

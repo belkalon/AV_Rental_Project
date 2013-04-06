@@ -1,9 +1,4 @@
 class RentalsController < ApplicationController
-	#from http://stackoverflow.com/questions/13605598/how-to-get-a-date-from-date-select-or-select-date-in-rails 
-	def flatten_date_array hash
-	  %w(1 2 3).map { |e| hash["return_date(#{e}i)"].to_i }
-	end
-
   # GET /rentals
   # GET /rentals.json
   def index
