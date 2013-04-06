@@ -42,17 +42,6 @@
       <% end %>
   <% end %>
 
-<!--DEBUG: show the session up here. remove this later-->
-<b>==========DEBUG==========</b><br/>
-<% if session[:customer] %>
-<b>selected customer: </b><%= session[:customer]%><br/>
-<%end%>
-<% if session[:inventory] %>
-<b>selected inventory: </b><%= session[:inventory]%><br/>
-<%end%>
-<b>==========DEBUG==========</b><br/>
-<!--end DEBUG-->
-
   <div class="span10 hero-unit" style="min-height: 760px;">
     <%= yield %>
   </div>
