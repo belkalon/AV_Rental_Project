@@ -2,12 +2,12 @@
 
 <p>
   <b>Customer:</b>
-  <%= @rental.customer %>
+  <%= link_to @rental.customer.L_name+", "+@rental.customer.F_name, @rental.customer %>
 </p>
 
 <p>
   <b>Inventory:</b>
-  <%= @rental.inventory %>
+  <%= link_to @rental.inventory.equipment_name, @rental.inventory %>
 </p>
 
 <p>

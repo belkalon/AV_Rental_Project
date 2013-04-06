@@ -20,6 +20,23 @@
   <%= @inventory.rental_price %>
 </p>
 
+<!--show any rentals here (if any) involving this item-->
+<p>
+<% if @inventory.rental.empty? %> <b>No Rentals</b>
+<% else %>
+	<%if @inventory.rental.count == 1 %>
+	<b>Rental:</b><br/>
+	<% rent = @inventory.rental %>
+	<!-- use .first because rent is technically a relation/collection -->
+	<%= link_to rent.first.event_name + ": "+rent.first.customer.L_name+", "+rent.first.customer.F_name, rent %><br />
+	<% else %>
+	<b><%=@inventory.rental.count%> Rentals:</b><br/>
+		<% @inventory.rental.each do |rent| %>
+		<%= link_to rent.event_name+": "+rent.customer.L_name+", "+rent.customer.F_name, rent %><br />
+		<%end%>
+	<% end %>
+<%end%>
+</p>
 
 <%= link_to 'Edit', edit_inventory_path(@inventory) %> |
 <%= link_to 'Back', inventories_path %>

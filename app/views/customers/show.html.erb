@@ -27,6 +27,7 @@
 	<%if @customer.rental.count == 1 %>
 	<b>Rental:</b><br/>
 	<% rent = @customer.rental %>
+	<!-- use .first because rent is technically a relation/collection -->
 	<%= link_to rent.first.event_name + ": "+rent.first.inventory.equipment_name, rent %><br />
 	<% else %>
 	<b><%=@customer.rental.count%> Rentals:</b><br/>

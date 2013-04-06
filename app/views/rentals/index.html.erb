@@ -14,8 +14,8 @@
 
 <% @rentals.each do |rental| %>
   <tr>
-    <td><%= rental.customer %></td>
-    <td><%= rental.inventory %></td>
+    <td><%= rental.customer.L_name+", "+rental.customer.F_name %></td>
+    <td><%= rental.inventory.equipment_name %></td>
     <td><%= rental.quantity %></td>
     <td><%= rental.return_date %></td>
     <td><%= rental.event_name %></td>
