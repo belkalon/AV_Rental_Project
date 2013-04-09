@@ -41,9 +41,16 @@ class RentalsController < ApplicationController
   # POST /rentals
   # POST /rentals.json
   def create
-		#causes problems due to customer and inventory being protected.
-		#try doing this without mass-assignment
-    #@rental = Rental.new(params[:rental])
+		#do this check before we create any new object
+		if params[:customer_id] and params[:inventory_id]
+			#note that if either of these are nil, we'll have SEVERE errors when trying to list any rentals
+			@cust = Customer.find(params[:customer_id])
+			@item = Inventory.find(params[:inventory_id])
+		else
+			flash[:error] = "Please supply BOTH the customer_id and inventory_id parameters!"
+			redirect_to :customers and return
+		end
+
 		@rental = Rental.new
 		
 		rent = params[:rental]
@@ -51,9 +58,6 @@ class RentalsController < ApplicationController
 		@rental.event_name = rent[:event_name]
 		@rental.quantity = rent[:quantity]
 
-		#hack to save rentals until we can dynamically find/select customers/items
-		@cust = Customer.find(1)
-		@item = Inventory.find(1)
 		@rental.customer = @cust
 		@rental.inventory = @item
 
