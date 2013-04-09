@@ -10,38 +10,38 @@
     <th></th>
     <th></th>
   </tr>
-<%if params[:inventory_id] %>
-<% @customers.each do |customer| %>
-  <tr>
-    <td><%= customer.F_name %></td>
-    <td><%= customer.L_name %></td>
-    <td><%= customer.email %></td>
-    <td><%= customer.phone %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		<td><%= link_to 'Complete Rental', :controller => "rentals", :action => "new", :customer_id => customer.id, :inventory_id => params[:inventory_id] %></td>
-  </tr>
-<% end %>
+  <% if params[:inventory_id] %>
+      <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.F_name %></td>
+            <td><%= customer.L_name %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.phone %></td>
+            <td><%= link_to 'Show', customer %></td>
+            <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+            <td><%= link_to 'Destroy', customer, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            <td><%= link_to 'Complete Rental', :controller => "rentals", :action => "new", :customer_id => customer.id, :inventory_id => params[:inventory_id] %></td>
+          </tr>
+      <% end %>
 
-<%else%>
+  <% else %>
 
-<% @customers.each do |customer| %>
-  <tr>
-    <td><%= customer.F_name %></td>
-    <td><%= customer.L_name %></td>
-    <td><%= customer.email %></td>
-    <td><%= customer.phone %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		<td><%= link_to 'New Rental', :controller => "inventories", :customer_id => customer.id%></td>
-  </tr>
-<% end %>
-<%end%>
+      <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.F_name %></td>
+            <td><%= customer.L_name %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.phone %></td>
+            <td><%= link_to 'Show', customer %></td>
+            <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+            <td><%= link_to 'Destroy', customer, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            <td><%= link_to 'New Rental', :controller => "inventories", :customer_id => customer.id %></td>
+          </tr>
+      <% end %>
+  <% end %>
 
 </table>
 
-<br />
+<br/>
 
 <%= link_to 'New Customer', new_customer_path %>

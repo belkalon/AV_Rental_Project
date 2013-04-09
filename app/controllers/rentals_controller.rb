@@ -24,6 +24,7 @@ class RentalsController < ApplicationController
   # GET /rentals/new
   # GET /rentals/new.json
   def new
+
     @rental = Rental.new
 
     respond_to do |format|
