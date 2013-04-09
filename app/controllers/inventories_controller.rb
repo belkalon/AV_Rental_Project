@@ -2,7 +2,8 @@ class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
   def index
-    @inventories = Inventory.all
+
+    @inventories = Inventory.order(params[:sort] + " " + params[:direction])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,4 +81,5 @@ class InventoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
