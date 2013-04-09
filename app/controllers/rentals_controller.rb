@@ -50,6 +50,8 @@ class RentalsController < ApplicationController
 			redirect_to :customers and return
 		end
 
+		#now check we can actually rent the # of items requested
+
 		@rental = Rental.new
 		
 		rent = params[:rental]
