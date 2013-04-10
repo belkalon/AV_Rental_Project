@@ -55,11 +55,17 @@ class RentalsController < ApplicationController
 		#first, find all rentals of the specified item, and sum them all up. we assume that a rental us destroyed upon the item being returned,
 		#so each existant rental tuple implies those items aren't in-house
 		rent = params[:rental]
-		currently_rented = Rental.where(:inventory_id => @item.id).sum(:quantity)
-		if (@item.num_of_items - currently_rented) < rent[:quantity].to_i
-			flash[:error] = "You can't rent " + rent[:quantity] + " of those! There's only " + (@item.num_of_items - currently_rented).to_s + " in stock!"
+		if @item.num_in_stock < rent[:quantity].to_i
+			flash[:error] = "You can't rent " + rent[:quantity] + " of those! There's only " + @item.num_in_stock.to_s + " in stock!"
 			redirect_to :customers and return #not ideal, but it'll work
 		end
+
+#we're storing this value now, no need to calculate
+#		currently_rented = Rental.where(:inventory_id => @item.id).sum(:quantity)
+#		if (@item.num_of_items - currently_rented) < rent[:quantity].to_i
+#			flash[:error] = "You can't rent " + rent[:quantity] + " of those! There's only " + (@item.num_of_items - currently_rented).to_s + " in stock!"
+#			redirect_to :customers and return #not ideal, but it'll work
+#		end
 
 
 		@rental = Rental.new
@@ -73,8 +79,16 @@ class RentalsController < ApplicationController
 
     respond_to do |format|
       if @rental.save
-        format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
-        format.json { render json: @rental, status: :created, location: @rental }
+				@item.num_in_stock -= @rental.quantity
+				if @item.save
+					format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
+					format.json { render json: @rental, status: :created, location: @rental }
+				else
+					#saved rental, failed to update item. destroy rental.
+					@rental.destroy
+					format.html { render action: "new" }
+					format.json { render json: @rental.errors, status: :unprocessable_entity }
+				end
       else
         format.html { render action: "new" }
         format.json { render json: @rental.errors, status: :unprocessable_entity }
@@ -102,6 +116,9 @@ class RentalsController < ApplicationController
   # DELETE /rentals/1.json
   def destroy
     @rental = Rental.find(params[:id])
+		item = @rental.inventory
+		item.num_in_stock += @rental.quantity
+		item.save
     @rental.destroy
 
     respond_to do |format|
