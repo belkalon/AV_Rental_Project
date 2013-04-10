@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404002936) do
+ActiveRecord::Schema.define(:version => 20130410224400) do
 
   create_table "customers", :force => true do |t|
     t.string   "F_name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130404002936) do
     t.float    "rental_price"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "num_in_stock"
   end
 
   create_table "rentals", :force => true do |t|
