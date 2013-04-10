@@ -1,9 +1,10 @@
 class InventoriesController < ApplicationController
+
   # GET /inventories
   # GET /inventories.json
   def index
 
-    @inventories = Inventory.order(params[:sort] + " " + params[:direction])
+    @inventories = Inventory.all
 
     respond_to do |format|
       format.html # index.html.erb

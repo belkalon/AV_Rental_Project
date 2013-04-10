@@ -17,7 +17,7 @@
 
 <p>
   <b>Rental price:</b>
-  <%= @inventory.rental_price %>
+  <%= number_to_currency(@inventory.rental_price) %>
 </p>
 
 <!--show any rentals here (if any) involving this item-->
