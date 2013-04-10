@@ -5,6 +5,7 @@
     <th>Equipment name</th>
     <th>Equipment type</th>
     <th>Num of items</th>
+    <th>Num in stock</th>
     <th>Rental price</th>
     <th></th>
     <th></th>
@@ -17,6 +18,7 @@
             <td><%= inventory.equipment_type %></td>
             <td><%= inventory.equipment_name %></td>
             <td><%= inventory.num_of_items %></td>
+            <td><%= inventory.num_in_stock %></td>
             <td><%= number_to_currency(inventory.rental_price) %></td>
             <td><%= link_to 'Show', inventory %></td>
             <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
@@ -32,6 +34,7 @@
             <td><%= inventory.equipment_type %></td>
             <td><%= inventory.equipment_name %></td>
             <td><%= inventory.num_of_items %></td>
+            <td><%= inventory.num_in_stock %></td>
             <td><%= number_to_currency(inventory.rental_price) %></td>
             <td><%= link_to 'Show', inventory %></td>
             <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
