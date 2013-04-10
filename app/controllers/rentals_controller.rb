@@ -52,10 +52,18 @@ class RentalsController < ApplicationController
 		end
 
 		#now check we can actually rent the # of items requested
+		#first, find all rentals of the specified item, and sum them all up. we assume that a rental us destroyed upon the item being returned,
+		#so each existant rental tuple implies those items aren't in-house
+		rent = params[:rental]
+		currently_rented = Rental.where(:inventory_id => @item.id).sum(:quantity)
+		if (@item.num_of_items - currently_rented) < rent[:quantity].to_i
+			flash[:error] = "You can't rent " + rent[:quantity] + " of those! There's only " + (@item.num_of_items - currently_rented).to_s + " in stock!"
+			redirect_to :customers and return #not ideal, but it'll work
+		end
+
 
 		@rental = Rental.new
 		
-		rent = params[:rental]
 		@rental.return_date = Date.today + 14.days #default rental time of 2 weeks
 		@rental.event_name = rent[:event_name]
 		@rental.quantity = rent[:quantity]
