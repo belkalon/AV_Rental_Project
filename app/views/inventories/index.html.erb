@@ -1,18 +1,21 @@
 <h1>Listing inventories</h1>
 
-<table class="table">
+<table id="inventory">
+  <thead>
   <tr>
     <th>Equipment name</th>
     <th>Equipment type</th>
     <th>Num of items</th>
     <th>Num in stock</th>
     <th>Rental price</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
   </tr>
-
+  </thead>
   <% if params[:customer_id] %>
+      <tbody>
       <% @inventories.each do |inventory| %>
           <tr>
             <td><%= inventory.equipment_type %></td>
@@ -26,9 +29,9 @@
             <td><%= link_to 'Complete Rental', :controller => "rentals", :customer_id => params[:customer_id], :action => "new", :inventory_id => inventory.id %></td>
           </tr>
       <% end %>
-
+      </tbody>
   <% else %>
-
+      <tbody>
       <% @inventories.each do |inventory| %>
           <tr>
             <td><%= inventory.equipment_type %></td>
@@ -42,6 +45,7 @@
             <td><%= link_to 'New Rental', :controller => "customers", :inventory_id => inventory.id %></td>
           </tr>
       <% end %>
+      </tbody>
   <% end %>
 
 </table>
