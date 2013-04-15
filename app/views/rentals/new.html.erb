@@ -17,14 +17,8 @@
 	
   <div class="field">
     <%= f.label :quantity %><br />
-    <%= f.number_field :quantity %>
+    $<%= Inventory.find(params[:inventory_id]).rental_price %> x <%= f.number_field :quantity %>
   </div>
-	<!-- return date is automatically set anyways
-  <div class="field">
-    <%= f.label :return_date %><br />
-    <%= f.date_select :return_date %>
-  </div>
-	-->
   <div class="field">
     <%= f.label :event_name %><br />
     <%= f.text_field :event_name %>

@@ -25,6 +25,10 @@
   <%= @rental.event_name %>
 </p>
 
+<p>
+  <b>Cost:</b>
+  $<%= @rental.inventory.rental_price * @rental.quantity %>
+</p>
 
 <%= link_to 'Edit', edit_rental_path(@rental) %> |
 <%= link_to 'Back', rentals_path %>
