@@ -1,32 +1,35 @@
 <h1>Listing rentals</h1>
 
-<table class="table">
+<table id="rentals">
+  <thead>
   <tr>
     <th>Customer</th>
     <th>Inventory</th>
     <th>Quantity</th>
     <th>Return date</th>
     <th>Event name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
   </tr>
-
-<% @rentals.each do |rental| %>
-  <tr>
-    <td><%= rental.customer.L_name+", "+rental.customer.F_name %></td>
-    <td><%= rental.inventory.equipment_name %></td>
-    <td><%= rental.quantity %></td>
-    <td><%= rental.return_date %></td>
-    <td><%= rental.event_name %></td>
-    <td><%= link_to 'Show', rental %></td>
-    <td><%= link_to 'Edit', edit_rental_path(rental) %></td>
-    <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  </thead>
+  <tbody>
+  <% @rentals.each do |rental| %>
+      <tr>
+        <td><%= rental.customer.L_name+", "+rental.customer.F_name %></td>
+        <td><%= rental.inventory.equipment_name %></td>
+        <td><%= rental.quantity %></td>
+        <td><%= rental.return_date %></td>
+        <td><%= rental.event_name %></td>
+        <td><%= link_to 'Show', rental %></td>
+        <td><%= link_to 'Edit', edit_rental_path(rental) %></td>
+        <td><%= link_to 'Destroy', rental, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
 </table>
 
-<br />
+<br/>
 
 <%= link_to 'Start Rental', :controller => 'customers', :action => 'index' %><br>
 <%= link_to 'Home', root_url %>

@@ -1,16 +1,20 @@
 <h1>Listing customers</h1>
 
-<table>
+<table id="customer">
+  <thead>
   <tr>
     <th>F name</th>
     <th>L name</th>
     <th>Email</th>
     <th>Phone</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
   </tr>
+  </thead>
   <% if params[:inventory_id] %>
+      <tbody>
       <% @customers.each do |customer| %>
           <tr>
             <td><%= customer.F_name %></td>
@@ -23,9 +27,9 @@
             <td><%= link_to 'Complete Rental', :controller => "rentals", :action => "new", :customer_id => customer.id, :inventory_id => params[:inventory_id] %></td>
           </tr>
       <% end %>
-
+      </tbody>
   <% else %>
-
+      <tbody>
       <% @customers.each do |customer| %>
           <tr>
             <td><%= customer.F_name %></td>
@@ -38,6 +42,7 @@
             <td><%= link_to 'New Rental', :controller => "inventories", :customer_id => customer.id %></td>
           </tr>
       <% end %>
+      </tbody>
   <% end %>
 
 </table>
