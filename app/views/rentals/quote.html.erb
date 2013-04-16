@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Customer:</b>
+  <%= link_to @customer.L_name+", "+@customer.F_name, @customer %>
+</p>
+
+<p>
+  <b>Event name:</b>
+  <%= @event %>
+</p>
+
+<p>
+  <b>Quote:</b>
+  $<%= @quote %>
+</p>
+
+<%= link_to 'Back', rentals_path %>

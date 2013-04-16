@@ -12,6 +12,7 @@
     <th>&nbsp;</th>
     <th>&nbsp;</th>
     <th>&nbsp;</th>
+    <th>&nbsp;</th>
   </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
         <td><%= rental.return_date %></td>
         <td><%= rental.event_name %></td>
         <td>$<%= rental.inventory.rental_price * rental.quantity %></td>
+        <td><%= link_to 'Quote', :controller => 'rentals', :id => rental, :action => 'quote' %></td>
         <td><%= link_to 'Show', rental %></td>
         <td><%= link_to 'Edit', edit_rental_path(rental) %></td>
         <td><%= link_to 'Destroy', rental, method: :delete, data: {confirm: 'Are you sure?'} %></td>

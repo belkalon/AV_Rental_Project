@@ -1,5 +1,10 @@
 AVRentalProject::Application.routes.draw do
-  resources :rentals
+  resources :rentals do 
+		member do
+			post 'quote'
+			get 'quote'
+		end
+	end
 
 
   resources :customers

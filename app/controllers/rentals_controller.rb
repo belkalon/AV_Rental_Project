@@ -1,4 +1,19 @@
 class RentalsController < ApplicationController
+	def quote
+		@quote = 0
+		rental = Rental.find(params[:id])
+		cust_id = rental.customer
+		@customer = Customer.find(cust_id)
+		@event = rental.event_name
+		Rental.where(:customer_id => @customer, :event_name => @event).each do |r|
+			@quote += r.inventory.rental_price * r.quantity
+		end
+    respond_to do |format|
+      format.html # 
+      format.json { render json: @quote} #fix this later to render multiple objects to json
+    end
+	end
+
   # GET /rentals
   # GET /rentals.json
   def index
